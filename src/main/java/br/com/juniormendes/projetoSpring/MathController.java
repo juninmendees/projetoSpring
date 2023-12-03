@@ -104,5 +104,16 @@ public class MathController {
         return (convertToDouble (numeroUm) + convertToDouble (numeroDois) + convertToDouble(numeroTres)) / 3;
     }
 
+    @RequestMapping (value = "/raizQuadrada/{numeroUm}", method = RequestMethod.GET)
+    public  Double raizQuadrada (
+            @PathVariable (value = "numeroUm")   String numeroUm
+    )
 
+            throws Exception {
+        if (!isNumeric(numeroUm)){
+            throw new UnsuportedMathOperationException("Valor deve ser inteiro");
+        }
+
+        return Math.sqrt(convertToDouble (numeroUm));
+    }
 }
