@@ -61,5 +61,33 @@ public class MathController {
         return convertToDouble (numeroUm) - convertToDouble (numeroDois);
     }
 
+    @RequestMapping (value = "/multiplicar/{numeroUm}/{numeroDois}", method = RequestMethod.GET)
+    public  Double multiplicar (
+            @PathVariable (value = "numeroUm")   String numeroUm,
+            @PathVariable (value = "numeroDois") String numeroDois
+    )
+
+            throws Exception {
+        if (!isNumeric(numeroUm) || !isNumeric(numeroDois)){
+            throw new UnsuportedMathOperationException("Valor deve ser inteiro");
+        }
+
+        return convertToDouble (numeroUm) * convertToDouble (numeroDois);
+    }
+
+    @RequestMapping (value = "/dividir/{numeroUm}/{numeroDois}", method = RequestMethod.GET)
+    public  Double dividir (
+            @PathVariable (value = "numeroUm")   String numeroUm,
+            @PathVariable (value = "numeroDois") String numeroDois
+    )
+
+            throws Exception {
+        if (!isNumeric(numeroUm) || !isNumeric(numeroDois)){
+            throw new UnsuportedMathOperationException("Valor deve ser inteiro");
+        }
+
+        return convertToDouble (numeroUm) / convertToDouble (numeroDois);
+    }
+
 
 }
