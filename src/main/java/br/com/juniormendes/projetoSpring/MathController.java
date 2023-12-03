@@ -13,7 +13,6 @@ public class MathController {
 
     private final AtomicLong counter = new AtomicLong();
      @RequestMapping (value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-
     public Double sum (
             @PathVariable (value = "numberOne") String numberOne,
             @PathVariable (value = "numberTwo") String numberTwo
@@ -47,5 +46,20 @@ public class MathController {
 
         return number.matches("[-+]?[0-9]*\\.?[0-9]+");
     }
+
+    @RequestMapping (value = "/subtrair/{numeroUm}/{numeroDois}", method = RequestMethod.GET)
+    public  Double subtrair (
+            @PathVariable (value = "numeroUm")   String numeroUm,
+            @PathVariable (value = "numeroDois") String numeroDois
+    )
+
+            throws Exception {
+        if (!isNumeric(numeroUm) || !isNumeric(numeroDois)){
+            throw new UnsuportedMathOperationException("Valor deve ser inteiro");
+        }
+
+        return convertToDouble (numeroUm) - convertToDouble (numeroDois);
+    }
+
 
 }
