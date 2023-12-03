@@ -89,5 +89,20 @@ public class MathController {
         return convertToDouble (numeroUm) / convertToDouble (numeroDois);
     }
 
+    @RequestMapping (value = "/media/{numeroUm}/{numeroDois}/{numeroTres}", method = RequestMethod.GET)
+    public  Double dividir (
+            @PathVariable (value = "numeroUm")   String numeroUm,
+            @PathVariable (value = "numeroDois") String numeroDois,
+            @PathVariable(value = "numeroTres") String numeroTres
+    )
+
+            throws Exception {
+        if (!isNumeric(numeroUm) || !isNumeric(numeroDois) || !isNumeric(numeroTres)){
+            throw new UnsuportedMathOperationException("Valor deve ser inteiro");
+        }
+
+        return (convertToDouble (numeroUm) + convertToDouble (numeroDois) + convertToDouble(numeroTres)) / 3;
+    }
+
 
 }
